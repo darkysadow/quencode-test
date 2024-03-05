@@ -1,0 +1,147 @@
+.login {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    @media (max-width: 400px) {
+        width: 300px;
+    }
+}
+
+.login__header {
+    margin: 40px 0;
+    font-size: 30px;
+    line-height: 38.73px;
+    font-weight: 700;
+    text-align: center;
+    color: #1A1919;
+}
+
+.login__bySocial {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-family: "Basis Grotesque Pro";
+}
+
+.login__bySocial button {
+    width: 48%;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #fff;
+    border: 1.2px solid #D3D8DC;
+    padding: 14px 0;
+    border-radius: 6px;
+    color: #060E1E;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__hr {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.login__hr::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background: #E3E6E9;
+    z-index: 0;
+}
+
+.login__hr span {
+    z-index: 1;
+    width: 28px;
+    text-align: center;
+    background: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: #bec5cc;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+}
+
+.login__form input {
+    padding: 14px 12px;
+    width: 100%;
+    border: 1.2px solid #D3D8DC;
+    border-radius: 6px;
+}
+
+.login__form__password {
+    position: relative;
+}
+
+.login__form__showPassword {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 14px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.login__form__showPassword {
+    font-size: 18px;
+}
+
+.login__form__showPassword_show {
+    position: absolute;
+    width: 20px;
+    height: 1.5px;
+    background: #67717b;
+    transform: rotate(-45deg);
+}
+
+.login__form__submit {
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+    background: #316fea;
+    border-radius: 6px;
+    padding: 13px 0;
+}
+
+.signup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
+    color: #060E1E;
+    @media (max-width: 400px) {
+        flex-direction: column;
+    }
+}
+
+.signup span {
+    margin: 0 0 0 0.3em;
+    color: #316FEA;
+    cursor: pointer;
+    @media (max-width: 400px) {
+        margin: 0;
+    }
+}

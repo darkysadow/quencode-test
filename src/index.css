@@ -1,6 +1,44 @@
+@font-face {
+  font-family: 'Basis Grotesque Pro';
+  src: url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Regular.eot');
+  src: local('Basis Grotesque Pro Regular'), local('BasisGrotesquePro-Regular'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Regular.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Regular.woff2') format('woff2'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Regular.woff') format('woff'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basis Grotesque Pro';
+  src: url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Bold.eot');
+  src: local('Basis Grotesque Pro Bold'), local('BasisGrotesquePro-Bold'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Bold.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Bold.woff2') format('woff2'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Bold.woff') format('woff'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basis Grotesque Pro';
+  src: url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Medium.eot');
+  src: local('Basis Grotesque Pro Medium'), local('BasisGrotesquePro-Medium'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Medium.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Medium.woff2') format('woff2'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Medium.woff') format('woff'),
+      url('./fonts/BasisGrotesquePro/BasisGrotesquePro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Basis Grotesque Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,4 +48,74 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container {
+	max-width: 937px;
+	margin: 0 auto;
+	width: 100%;
+	@media (max-width: 949px) {
+		max-width: 970px;
+	}
+	@media (max-width: 991px) {
+		max-width: 750px;
+	}
+	@media (max-width: 767px) {
+		max-width: none;
+		padding: 0 10px;
+	}
+}
+
+@font-face {
+  font-family: 'icons';
+  src:  url('./fonts/iconfont/icons.eot?5mga56');
+  src:  url('./fonts/iconfont/icons.eot?5mga56#iefix') format('embedded-opentype'),
+    url('./fonts/iconfont/icons.ttf?5mga56') format('truetype'),
+    url('./fonts/iconfont/icons.woff?5mga56') format('woff'),
+    url('./fonts/iconfont/icons.svg?5mga56#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="_icon-"], [class*=" _icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+._icon-showPassword:before {
+  content: "\e900";
+  color: #67717b;
+}
+._icon-github:before {
+  content: "\e901";
+}
+._icon-google .path1:before {
+  content: "\e902";
+  color: rgb(66, 133, 244);
+}
+._icon-google .path2:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: rgb(52, 168, 83);
+}
+._icon-google .path3:before {
+  content: "\e904";
+  margin-left: -1em;
+  color: rgb(251, 188, 5);
+}
+._icon-google .path4:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(234, 67, 53);
 }
