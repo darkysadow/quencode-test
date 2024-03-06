@@ -11,7 +11,7 @@ function App() {
   const renderer = () => {
     switch(activeComponent) {
       case 'Login':
-        return <Login />
+        return <Login setActiveComponent={setActiveComponent} />
       case "Forgot Password":
         return <ForgotPassword />
       case "Reset Password":

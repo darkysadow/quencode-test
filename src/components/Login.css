@@ -86,6 +86,21 @@
     border-radius: 6px;
 }
 
+.login__form__input_loginInvalid {
+    border: 1.2px solid #ee4f4f !important;
+}
+
+.login__form__incorrectLogin {
+    text-align: center;
+    color: #ee4f4f;
+}
+
+.login__form__passwordContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .login__form__password {
     position: relative;
 }
@@ -112,6 +127,19 @@
     height: 1.5px;
     background: #67717b;
     transform: rotate(-45deg);
+}
+
+.login__form__forgotPassword {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login__form__forgotPassword span {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #316FEA;
 }
 
 .login__form__submit {
