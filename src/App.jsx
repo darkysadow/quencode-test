@@ -13,7 +13,7 @@ function App() {
       case 'Login':
         return <Login setActiveComponent={setActiveComponent} />
       case "Forgot Password":
-        return <ForgotPassword />
+        return <ForgotPassword setActiveComponent={setActiveComponent} />
       case "Reset Password":
         return <ResetPassword />
     }

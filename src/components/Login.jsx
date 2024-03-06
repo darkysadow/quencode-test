@@ -3,7 +3,6 @@ import './Login.css'
 
 const Login = ({ setActiveComponent }) => {
     const [showPassword, setShowPassword] = useState(false);
-    const [forgotPasswordFlag, setForgotPasswordFlag] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(false);
