@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import './ForgotPassword.css'
 import CustomInput from './common/CustomInput';
+import { authAPI } from '../api/api';
 
-const ForgotPassword = ({setActiveComponent}) => {
+const ForgotPassword = ({setActiveComponent, setError}) => {
     const [email, setEmail] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(false);
     const [loginInputFocus, setLoginInputFocus] = useState(undefined);
+    const [isFetching, setIsFetching] = useState(false)
 
     const handleLoginInput = (e) => {
         const inputEmail = e.target.value;
@@ -14,6 +16,17 @@ const ForgotPassword = ({setActiveComponent}) => {
         const isValid = emailRegex.test(inputEmail);
         setIsValidEmail(isValid);
     };
+
+    const handleSubmit = async () => {
+        setIsFetching(true);
+        try {
+            const res = await authAPI.passwordReset(email)
+            console.log(res);
+        } catch (error) {
+            setIsFetching(false)
+            setError(error.response.data);
+        }
+    }
 
     return (
         <>
@@ -34,14 +47,20 @@ const ForgotPassword = ({setActiveComponent}) => {
                             message: "Type the correct email"
                             
                         }}
+                        disabled={isFetching}
                     />
                     <div className='forgotPassword__form__buttonGroup'>
-                        <button className='forgotPassword__form__buttonGroup_send'>
+                        <button 
+                            className='forgotPassword__form__buttonGroup_send'
+                            onClick={handleSubmit}
+                            disabled={isFetching}
+                        >
                             Send
                         </button>
                         <button 
                             className='forgotPassword__form__buttonGroup_cancel' 
                             onClick={() => setActiveComponent('Login')}
+                            disabled={isFetching}
                         >
                             Cancel
                         </button>

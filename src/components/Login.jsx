@@ -37,6 +37,7 @@ const Login = ({ setActiveComponent, setError = () => {} }) => {
             document.cookie = `access_token=${res.access_token} path=/ expires=${accessExpirationDate.toUTCString()}`
             const refreshExpirationDate = new Date(new Date().getTime() + res.refresh_token_expire * 1000);
             document.cookie = `refresh_token=${res.refresh_token} path=/ expires=${refreshExpirationDate.toUTCString()}`
+            setActiveComponent("Authorized")
         } catch (error) {
             setIsFetching(false)
             setError(error.response.data);

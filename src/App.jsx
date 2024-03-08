@@ -27,13 +27,13 @@ function App() {
       case 'Login':
         return <Login setActiveComponent={setActiveComponent} setError={setUserError} />
       case "Forgot Password":
-        return <ForgotPassword setActiveComponent={setActiveComponent} />
+        return <ForgotPassword setActiveComponent={setActiveComponent} setError={setUserError} />
       case "Reset Password":
         return <ResetPassword />
       case "Authorized":
         return <h1 style={{textAlign: "center"}}>Authorized. (Here must be redirect)</h1>
       default:
-        return <Login setActiveComponent={setActiveComponent} />
+        return <Login setActiveComponent={setActiveComponent} setError={setUserError} />
     }
   }
 
