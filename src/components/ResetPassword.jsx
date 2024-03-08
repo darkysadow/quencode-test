@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './ResetPassword.css'
+import CustomInput from './common/CustomInput';
 
 const ResetPassword = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -11,10 +12,12 @@ const ResetPassword = () => {
     const [passwordInputFocus, setPasswordInputFocus] = useState(undefined);
     const [secondPasswordInputFocus, setSecondPasswordInputFocus] = useState(undefined)
 
+
     const handlePasswordInput = (e) => {
         const inputPassword = e.target.value;
         setPassword(inputPassword);
         const isValid = inputPassword.length >= 8;
+        
         setIsValidPassword(isValid);
     }
 
@@ -34,46 +37,44 @@ const ResetPassword = () => {
                     className='resetPassword__form'
                 >
                     <div className='resetPassword__form__inputContainer'>
-                        <div className='resetPassword__form__password resetPassword__form__password_first'>
-                            <input
-                                type={showPassword ? "text" : 'password'}
-                                name='firstPassword'
-                                id='firstPassword'
-                                placeholder='Password'
-                                value={password}
-                                onChange={(e) => handlePasswordInput(e)}
-                                onFocus={() => setPasswordInputFocus(true)}
-                                onBlur={() => setPasswordInputFocus(false)}
-                                className={(passwordInputFocus !== undefined && passwordInputFocus !== true && !isValidPassword) ? "resetPassword__form__input_loginInvalid" : " "}
-                            />
-                            <button className='resetPassword__form__showPassword' onClick={(e) => { showPassword ? setShowPassword(false) : setShowPassword(true); e.preventDefault() }}>
-                                <span className='_icon-showPassword'></span>
-                                {showPassword && <span className='resetPassword__form__showPassword_show'></span>}
-                            </button>
-                        </div>
-                        {(!isValidPassword && !passwordInputFocus && passwordInputFocus !== undefined) && <p className='resetPassword__form__incorrectPassword'>Password should be at least 8 characters</p>}
-                        <div className='resetPassword__form__password resetPassword__form__password_second'>
-                            <input
-                                type={showSecondPassword ? "text" : 'password'}
-                                name='secondPassword'
-                                id='secondPassword'
-                                placeholder='Password'
-                                value={secondPassword}
-                                onChange={(e) => handleSecondPasswordInput(e)}
-                                onFocus={() => setSecondPasswordInputFocus(true)}
-                                onBlur={() => setSecondPasswordInputFocus(false)}
-                                className={(secondPasswordInputFocus !== undefined && secondPasswordInputFocus !== true && !isValidSecondPassword) ? "resetPassword__form__input_loginInvalid" : " "}
-                            />
-                            <button className='resetPassword__form__showPassword' onClick={(e) => { showSecondPassword ? setShowSecondPassword(false) : setShowSecondPassword(true); e.preventDefault() }}>
-                                <span className='_icon-showPassword'></span>
-                                {showSecondPassword && <span className='resetPassword__form__showPassword_show'></span>}
-                            </button>
-                        </div>
-                        {(!isValidSecondPassword && !secondPasswordInputFocus && secondPasswordInputFocus !== undefined) && <p className='resetPassword__form__incorrectPassword'>Password should be at least 8 characters</p>}
-                        {(isValidSecondPassword && isValidPassword && !passwordInputFocus && !secondPasswordInputFocus && (secondPassword !== password)) && <p className='resetPassword__form__incorrectPassword'>Passwords do not match</p>}
+                        <CustomInput
+                            inputName={'firstPassword'}
+                            placeholder={'Password'}
+                            inputValue={password}
+                            handleInputChange={handlePasswordInput}
+                            inputFocus={passwordInputFocus}
+                            setInputFocus={setPasswordInputFocus}
+                            isValidInput={isValidPassword}
+                            isPasswordInput={true}
+                            showPassword={showPassword}
+                            setShowPassword={setShowPassword}
+                            inputLabel={'Password'}
+                            validationError={{
+                                condition: (passwordInputFocus !== undefined && passwordInputFocus !== true && !isValidPassword) || ((password !== secondPassword) && (!passwordInputFocus && !secondPasswordInputFocus)),
+                                message: (passwordInputFocus !== undefined && passwordInputFocus !== true && !isValidPassword) ? "Password should be at least 8 characters" : ((password !== secondPassword) && (!passwordInputFocus && !secondPasswordInputFocus)) && "Passwords do not match"
+                            }}
+                        />
+                        <CustomInput
+                            inputName={'secondPassword'}
+                            placeholder={'Password'}
+                            inputValue={secondPassword}
+                            handleInputChange={handleSecondPasswordInput}
+                            inputFocus={secondPasswordInputFocus}
+                            setInputFocus={setSecondPasswordInputFocus}
+                            isValidInput={isValidSecondPassword}
+                            isPasswordInput={true}
+                            showPassword={showSecondPassword}
+                            setShowPassword={setShowSecondPassword}
+                            inputLabel={'Confirm Password'}
+                            validationError={{
+                                condition: (secondPasswordInputFocus !== undefined && secondPasswordInputFocus !== true && !isValidSecondPassword) || ((password !== secondPassword) && (!passwordInputFocus && !secondPasswordInputFocus)),
+                                message: (secondPasswordInputFocus !== undefined && secondPasswordInputFocus !== true && !isValidSecondPassword) ? "Password should be at least 8 characters" : ((password !== secondPassword) && (!passwordInputFocus && !secondPasswordInputFocus)) && "Passwords do not match"
+                            }}
+                        />
                     </div>
                     <button className='resetPassword__form__submit'>Reset Password</button>
                 </form>
+
             </div>
         </>
     )
