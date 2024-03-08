@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import './Login.css'
 import CustomInput from './common/CustomInput';
+import { authAPI } from '../api/api';
 
-const Login = ({ setActiveComponent }) => {
+const Login = ({ setActiveComponent, setError = () => {} }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -10,6 +11,7 @@ const Login = ({ setActiveComponent }) => {
     const [loginInputFocus, setLoginInputFocus] = useState(undefined);
     const [isValidPassword, setIsValidPassword] = useState(false);
     const [passwordInputFocus, setPasswordInputFocus] = useState(undefined);
+    const [isFetching, setIsFetching] = useState(false)
 
     const handleLoginInput = (e) => {
         const inputEmail = e.target.value;
@@ -24,6 +26,18 @@ const Login = ({ setActiveComponent }) => {
         setPassword(inputPassword);
         const isValid = inputPassword.length >= 8;
         setIsValidPassword(isValid);
+    }
+
+    const handleSubmit = async () => {
+        try {
+            setError(null)
+            setIsFetching(true)
+            const res = await authAPI.login(email, password).then(res => setIsFetching(false))
+            console.log(res);
+        } catch (error) {
+            setIsFetching(false)
+            setError(error.response.data);
+        }
     }
 
     return (
@@ -57,6 +71,7 @@ const Login = ({ setActiveComponent }) => {
                             condition: (loginInputFocus !== undefined && loginInputFocus !== true && !isValidEmail),
                             message: 'Type the correct Email'
                         }}
+                        disabled={isFetching}
                     />
                     
                     {isValidEmail && <div className='login__form__passwordContainer'>
@@ -73,12 +88,19 @@ const Login = ({ setActiveComponent }) => {
                                 condition: passwordInputFocus !== undefined && passwordInputFocus !== true && !isValidPassword,
                                 message: 'Password should be at least 8 characters'
                             }}
+                            
+                            disabled={isFetching}
                         />
                         <div className='login__form__forgotPassword'>
                             <span onClick={() => setActiveComponent('Forgot Password')}>Forgot your password?</span>
                         </div>
                     </div>}
-                    <button className='login__form__submit'>Log in to Qencode</button>
+                    <button 
+                        className='login__form__submit' 
+                        disabled={!isValidEmail || !isValidPassword || isFetching}
+                        onClick={handleSubmit}
+                    >
+                        {isFetching ? "Loading..." :"Log in to Qencode"}</button>
                 </form>
             </div>
             <div className='signup'>

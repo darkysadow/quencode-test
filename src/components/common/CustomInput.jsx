@@ -5,7 +5,8 @@ const CustomInput = ({
     inputName, placeholder, isPasswordInput = false, 
     inputValue, handleInputChange, setInputFocus, 
     showPassword = true, setShowPassword,
-    inputLabel = undefined, validationError = {condition: undefined, message: undefined} }) => {
+    inputLabel = undefined, validationError = {condition: undefined, message: undefined},
+    disabled }) => {
 
     return (
         <div className='customInput'>
@@ -17,6 +18,7 @@ const CustomInput = ({
                     id={inputName}
                     placeholder={placeholder}
                     value={inputValue}
+                    disabled={disabled}
                     onChange={(e) => handleInputChange(e)}
                     onFocus={() => setInputFocus(true)}
                     onBlur={() => setInputFocus(false)}
