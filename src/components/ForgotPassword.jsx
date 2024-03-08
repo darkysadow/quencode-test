@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './ForgotPassword.css'
+import CustomInput from './common/CustomInput';
 
 const ForgotPassword = ({setActiveComponent}) => {
     const [email, setEmail] = useState('');
@@ -22,18 +23,18 @@ const ForgotPassword = ({setActiveComponent}) => {
                     onSubmit={(e) => e.preventDefault()}
                     className='forgotPassword__form'
                 >
-                    <input 
-                        type="email" 
-                        name='forgotPasswordEmail' 
-                        id='forgotPasswordEmail'
-                        placeholder='Enter your email'
-                        onFocus={() => setLoginInputFocus(true)}
-                        onBlur={() => setLoginInputFocus(false)}
-                        value={email}
-                        onChange={(e) => handleLoginInput(e)}
-                        className={(loginInputFocus !== undefined && loginInputFocus !== true && !isValidEmail) ? "forgotPassword__form__input_loginInvalid" : " "}
+                    <CustomInput 
+                        handleInputChange={handleLoginInput}
+                        inputName={"forgotPasswordEmail"}
+                        placeholder={"Enter your email"}
+                        inputValue={email}
+                        setInputFocus={setLoginInputFocus}
+                        validationError={{
+                            condition: loginInputFocus !== undefined && loginInputFocus !== true && !isValidEmail,
+                            message: "Type the correct email"
+                            
+                        }}
                     />
-                    {(loginInputFocus !== undefined && loginInputFocus !== true && !isValidEmail) && <p className='forgotPassword__form__incorrectLogin'>Type the correct email</p>}
                     <div className='forgotPassword__form__buttonGroup'>
                         <button className='forgotPassword__form__buttonGroup_send'>
                             Send

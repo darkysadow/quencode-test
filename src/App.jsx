@@ -6,7 +6,7 @@ import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState('Reset Password')
+  const [activeComponent, setActiveComponent] = useState('Login')
 
   const renderer = () => {
     switch(activeComponent) {

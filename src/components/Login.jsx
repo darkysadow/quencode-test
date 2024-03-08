@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Login.css'
+import CustomInput from './common/CustomInput';
 
 const Login = ({ setActiveComponent }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -46,41 +47,37 @@ const Login = ({ setActiveComponent }) => {
                     className='login__form'
                     onSubmit={(e) => e.preventDefault()}
                 >
-                    <input
-                        type="email"
-                        name="workEmail"
-                        id="workEmail"
-                        placeholder='Work email'
-                        value={email}
-                        onChange={(e) => handleLoginInput(e)}
-                        onFocus={() => setLoginInputFocus(true)}
-                        onBlur={() => setLoginInputFocus(false)}
-                        className={(loginInputFocus !== undefined && loginInputFocus !== true && !isValidEmail) ? "login__form__input_loginInvalid" : " "}
+                    <CustomInput 
+                        handleInputChange={handleLoginInput}
+                        inputName={'workEmail'}
+                        inputValue={email}
+                        placeholder={"Work email"}
+                        setInputFocus={setLoginInputFocus}
+                        validationError={{
+                            condition: (loginInputFocus !== undefined && loginInputFocus !== true && !isValidEmail),
+                            message: 'Type the correct Email'
+                        }}
                     />
-                    {(loginInputFocus !== undefined && loginInputFocus !== true && !isValidEmail) && <p className='login__form__incorrectLogin'>Type the correct email</p>}
+                    
                     {isValidEmail && <div className='login__form__passwordContainer'>
-                        <div className='login__form__password'>
-                            <input
-                                type={showPassword ? "text" : 'password'}
-                                name='loginPassword'
-                                id='loginPassword'
-                                placeholder='Password'
-                                value={password}
-                                onChange={(e) => handlePasswordInput(e)}
-                                onFocus={() => setPasswordInputFocus(true)}
-                                onBlur={() => setPasswordInputFocus(false)}
-                                className={(passwordInputFocus !== undefined && passwordInputFocus !== true && !isValidPassword) ? "login__form__input_loginInvalid" : " "}
-                            />
-                            <button className='login__form__showPassword' onClick={(e) => { showPassword ? setShowPassword(false) : setShowPassword(true); e.preventDefault() }}>
-                                <span className='_icon-showPassword'></span>
-                                {showPassword && <span className='login__form__showPassword_show'></span>}
-                            </button>
-                        </div>
+                        <CustomInput 
+                            handleInputChange={handlePasswordInput}
+                            inputName={"loginPassword"}
+                            placeholder={"Password"}
+                            inputValue={password}
+                            setInputFocus={setPasswordInputFocus}
+                            setShowPassword={setShowPassword}
+                            isPasswordInput={true}
+                            showPassword={showPassword}
+                            validationError={{
+                                condition: passwordInputFocus !== undefined && passwordInputFocus !== true && !isValidPassword,
+                                message: 'Password should be at least 8 characters'
+                            }}
+                        />
                         <div className='login__form__forgotPassword'>
                             <span onClick={() => setActiveComponent('Forgot Password')}>Forgot your password?</span>
                         </div>
                     </div>}
-                    {(isValidEmail && passwordInputFocus !== undefined && passwordInputFocus !== true && !isValidPassword) && <p className='login__form__incorrectLogin'>Password should be at least 8 characters</p>}
                     <button className='login__form__submit'>Log in to Qencode</button>
                 </form>
             </div>

@@ -26,6 +26,10 @@
     border-radius: 6px;
 }
 
+.customInput__container input:focus {
+    border: 1.2px solid #316FEA;
+}
+
 .customInput_inputInvalid {
     border: 1.2px solid #ee4f4f !important;
 }

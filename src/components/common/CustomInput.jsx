@@ -5,8 +5,8 @@ const CustomInput = ({
     inputName, placeholder, isPasswordInput = false, 
     inputValue, handleInputChange, setInputFocus, 
     showPassword = true, setShowPassword,
-    inputLabel = undefined, validationError }) => {
-        
+    inputLabel = undefined, validationError = {condition: undefined, message: undefined} }) => {
+
     return (
         <div className='customInput'>
             {inputLabel && <p className='customInput__label'>{inputLabel}</p>}
