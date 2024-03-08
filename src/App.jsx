@@ -16,6 +16,8 @@ function App() {
         return <ForgotPassword setActiveComponent={setActiveComponent} />
       case "Reset Password":
         return <ResetPassword />
+      default:
+        return <Login setActiveComponent={setActiveComponent} />
     }
   }
 
