@@ -1,12 +1,15 @@
 import React from 'react'
 import "./CustomInput.css"
 
-const CustomInput = ({ 
-    inputName, placeholder, isPasswordInput = false, 
-    inputValue, handleInputChange, setInputFocus, 
+const CustomInput = ({
+    inputName, placeholder, isPasswordInput = false,
+    inputValue, handleInputChange, setInputFocus = () => {},
     showPassword = true, setShowPassword,
-    inputLabel = undefined, validationError = {condition: undefined, message: undefined},
+    inputLabel = undefined, validationErrors = [],
     disabled }) => {
+    
+    //Bool is input has validation errors
+    const hasErrors = validationErrors.length > 0;
 
     return (
         <div className='customInput'>
@@ -22,10 +25,10 @@ const CustomInput = ({
                     onChange={(e) => handleInputChange(e)}
                     onFocus={() => setInputFocus(true)}
                     onBlur={() => setInputFocus(false)}
-                    className={(validationError?.condition) ? "customInput_inputInvalid" : " "}
+                    className={hasErrors ? "customInput_inputInvalid" : " "}
                 />
                 {
-                   ( validationError?.condition ) && <span className='customInput__errMsg'>{validationError.message}</span>
+                    hasErrors && <span className='customInput__errMsg'>{validationErrors[0]}</span>
                 }
                 {
                     isPasswordInput && <button className='customInput__showPassword' onClick={(e) => { showPassword ? setShowPassword(false) : setShowPassword(true); e.preventDefault() }}>

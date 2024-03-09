@@ -64,4 +64,8 @@
     background: #fff;
     padding: 0 5px;
     color: #ee4f4f;
+    max-width: 350px;
+    @media (max-width: 400px) {
+        max-width: 280px;
+    }
 }
